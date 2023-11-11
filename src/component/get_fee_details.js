@@ -10,7 +10,7 @@ const Student_feeand_parent_details = () => {
 
   const Delete_user = (id) => {
     console.log("deleted", id);
-    // axios.post("http://localhost:3001/deleted",{name:"name"}).then((res)=>{
+    // axios.post("${process.env.REACT_APP_BACKEND_URL}/deleted",{name:"name"}).then((res)=>{
     //   console.log(res)
     // })
     // .catch((err)=>{
@@ -33,9 +33,11 @@ const Student_feeand_parent_details = () => {
   useEffect(() => {
     async function getData() {
       try {
-        const member = await axios.get(`http://localhost:3001/api/${table}`)
+        const member = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/${table}`)
         console.log(member.data[0])
-        setMembers(member.data[0]);
+        if(member?.data && Array.isArray(member?.data)){
+          setMembers(member.data);
+        }
 
       } catch (err) {
         console.log(err);
@@ -64,7 +66,7 @@ const Student_feeand_parent_details = () => {
   function update() {
     console.log("submited")
     console.log(balance-parseInt(updateBal),totalfee-(balance-parseInt(updateBal)))
-    axios.post('http://localhost:3001/update/fee', { id: updateId, fee_to_pay: (balance - parseInt(updateBal)),
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/update/fee`, { id: updateId, fee_to_pay: (balance - parseInt(updateBal)),
     paid:totalfee-(balance-parseInt(updateBal)), deadline: updateDeadline })
     .then((result) => {
       console.log(result);
@@ -110,7 +112,7 @@ const Student_feeand_parent_details = () => {
     }
     if (x == "") {
       return (
-        Members.map((user, id) => {
+         Array.isArray(Members) && Members?.map((user, id) => {
           return (
             <>
               <tr className="row">
@@ -133,7 +135,7 @@ const Student_feeand_parent_details = () => {
     else {
       let display = 0;
       return (
-        Members.map((user, id) => {
+        Array.isArray(Members) && Members?.map((user, id) => {
           if ((String(user.sid)).includes(x)) {
             display = 1;
             return (

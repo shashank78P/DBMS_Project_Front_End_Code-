@@ -9,7 +9,7 @@ const Delete_user = () => {
     const { table } = useParams();
     const { id } = useParams();
     function delete_user(table,id){
-        axios.post("http://localhost:3001/deleted",{table:table,id:id}).then((res)=>{
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/deleted`,{table:table,id:id}).then((res)=>{
                           console.log(res)
                         })
                         .catch((err)=>{

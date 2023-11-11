@@ -9,7 +9,7 @@ const Students_details = () => {
 
   const Delete_user = (id)=>{
     console.log("deleted",id);
-    // axios.post("http://localhost:3001/deleted",{name:"name"}).then((res)=>{
+    // axios.post("${process.env.REACT_APP_BACKEND_URL}/deleted",{name:"name"}).then((res)=>{
     //   console.log(res)
     // })
     // .catch((err)=>{
@@ -28,7 +28,7 @@ const navigate = useNavigate();
   useEffect(() => {
     async function getData() {
       try {
-        const member = await axios.get(`http://localhost:3001/api/${table}`)
+        const member = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/${table}`)
         setMembers(member.data.name);
         console.log(member)
       } catch (err) {

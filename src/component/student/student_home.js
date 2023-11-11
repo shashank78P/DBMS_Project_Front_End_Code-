@@ -10,11 +10,10 @@ const Student = () => {
     function show_details() {
         console.log("called")
         try {
-            axios.post("http://localhost:3001/Students_details", { id: find_by_id })
+            axios.post(`${process.env.REACT_APP_BACKEND_URL}/Students_details`, { id: find_by_id })
                 .then((result) => {
                     console.log(result)
-                    setDetails(result.data[0])
-                    if (result.data[0] == undefined) {
+                    if (result?.data?.[0] == undefined) {
                         console.log("empty")
                     }
                     else {
@@ -105,15 +104,15 @@ const Student = () => {
                             <table className="block">
                                 <tr>
                                     <th>Parent ID :-</th>
-                                    <td>{details.PID || ""}</td>
+                                    <td>{details.pid || ""}</td>
                                 </tr>
                                 <tr>
                                     <th>Father Name :-</th>
-                                    <td>{details.FATHER_NAME || ""}</td>
+                                    <td>{details.father_name || ""}</td>
                                 </tr>
                                 <tr>
                                     <th>Mother Name :-</th>
-                                    <td>{details.MOTHER_PHONE || ""}</td>
+                                    <td>{details.mother_name || ""}</td>
                                 </tr>
                                 <tr>
                                     <th>Address :-</th>
@@ -121,7 +120,7 @@ const Student = () => {
                                 </tr>
                                 <tr>
                                     <th>E-mail :-</th>
-                                    <td>{details.PARENT_EMAIL || ""}</td>
+                                    <td>{details.parent_email || ""}</td>
                                 </tr>
                                 <tr>
                                     <th>Parent Income :-</th>

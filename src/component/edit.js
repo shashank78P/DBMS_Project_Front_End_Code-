@@ -61,7 +61,7 @@ function Edit(props) {
   useEffect(() => {
     async function getData() {
       try {
-        const member = await Axios.post("http://localhost:3001/getById", { table: table, id: id })
+        const member = await Axios.post(`${process.env.REACT_APP_BACKEND_URL}/getById`, { table: table, id: id })
           .then((res) => {
             Member = res.data[0];
           })
@@ -104,7 +104,7 @@ function Edit(props) {
         email: (email == "") ? (old_email) : (email)
       }
       console.log(updating_data)
-      Axios.post("http://localhost:3001/update", { updating_data: updating_data, table: table, id: id })
+      Axios.post(`${process.env.REACT_APP_BACKEND_URL}/update`, { updating_data: updating_data, table: table, id: id })
         .then((res) => {
           setUpdate_status(res.data);
           dsply_message((update_status == "")? "Re-submit the form agian" : "Updated sucessfully !!!")

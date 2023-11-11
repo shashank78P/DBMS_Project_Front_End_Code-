@@ -4,11 +4,8 @@ import Student from "./component/student/student_home";
 import Teacher from "./component/teacher/teacher_home";
 import Login from "./component/login";
 import Student_details from "./component/details"
-import Parent from "./component/add_user_component/parents_details";
 import Edit from "./component/edit"
-import { useNavigate } from "react-router-dom"
-import { Link,BrowserRouter,Route,Routes,Navigate } from "react-router-dom";
-import { prependOnceListener } from "process";
+import { Route,Routes } from "react-router-dom";
 import Delete_user from "./component/delete";
 import Add from "./component/add";
 import Adds from "./component/add_t_a";

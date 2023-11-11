@@ -6,14 +6,17 @@ const Chat = () => {
     let [id, setId] = useState("");
     let [password, setPassword] = useState("");
     let [messages, setMessages] = useState([])
+    console.log(id, password);
     function show_Messages() {
         console.log(id, password);
         try {
-            axios.post("http://localhost:3001/get_message", { id: id, password: password })
+            axios.post(`${process.env.REACT_APP_BACKEND_URL}/get_message`, { id: id, password: password })
                 .then((result) => {
-                    console.log(result)
-                    setMessages(result.data)
-                    console.log(messages)
+                    if (result && Array.isArray(result?.data)) {
+                        console.log(result)
+                        setMessages(result.data)
+                        console.log(messages)
+                    }
                 })
                 .catch((error) => {
                     console.log(error)
@@ -52,7 +55,7 @@ const Chat = () => {
                 <div className="">
                     <div className="message_frame2">
                         {
-                            messages.map((value, index) => {
+                            messages && messages?.map((value, index) => {
                                 return (
                                     <>
                                         <div className="messages">

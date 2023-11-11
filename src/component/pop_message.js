@@ -11,7 +11,7 @@ const Pop_msg = (props) => {
     let [color,setColor] = useState(false);
     function Handel_opartion(){
         if(props.info.operation === "delete"){
-            axios.post("http://localhost:3001/deleted",{table:props.info.table.table,id:props.info.id.id})
+            axios.post(`${process.env.REACT_APP_BACKEND_URL}/deleted`,{table:props.info.table.table,id:props.info.id.id})
             .then((res)=>{
                 setColor(true);
                 setMessage("Deleted Sucessfully!!")

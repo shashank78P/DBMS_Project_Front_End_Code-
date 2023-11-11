@@ -17,7 +17,7 @@ const Login = (props) => {
     
     
     const handelClick = (product) => {
-        Axios.post("http://localhost:3001/get", {
+        Axios.post(`${process.env.REACT_APP_BACKEND_URL}/get`, {
             name: "product",
             desc: "good product",
             price: 10
@@ -34,7 +34,7 @@ const Login = (props) => {
             },5000);
         }
         event.preventDefault();
-        Axios.post("http://localhost:3001/login", {
+        Axios.post(`${process.env.REACT_APP_BACKEND_URL}/login`, {
             role : role,
             user_name: user_name,
             password: password

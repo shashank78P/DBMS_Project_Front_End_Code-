@@ -36,7 +36,7 @@ function Parent({ formData, setFormData, table ,setPage}) {
         function Handle_form() {
             console.log(formData.DOB, table)
             let role={role:"parent"}
-            axios.post("http://localhost:3001/insert", { formData, table ,role})
+            axios.post(`${process.env.REACT_APP_BACKEND_URL}/insert`, { formData, table ,role})
                 .then((result) => {
                     console.log(result,setPage)
                     show_msg(result)

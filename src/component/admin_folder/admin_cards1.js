@@ -27,7 +27,7 @@ const Cards1 = (props) => {
     function Submit_Addclass() {
         console.log(Addclass)
         try {
-            axios.post("http://localhost:3001/add_class", Addclass)
+            axios.post(`${process.env.REACT_APP_BACKEND_URL}/add_class`, Addclass)
                 .then((result) => {
                     setMessage(result.data.msg)
                     console.log(result);
@@ -47,7 +47,7 @@ const Cards1 = (props) => {
     useEffect(() => {
         async function getAll() {
             try {
-                const fee = await axios.get("http://localhost:3001/api/fee")
+                const fee = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/fee`)
 
                 setfees(fee.data[0]);
             } catch (error) {
@@ -60,7 +60,7 @@ const Cards1 = (props) => {
     useEffect(() => {
         async function getAll() {
             try {
-                const Students = await axios.get("http://localhost:3001/api/student")
+                const Students = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/student`)
                 console.log("student", Students.data.name);
                 setStudents(Students.data.name);
             } catch (error) {
@@ -72,7 +72,7 @@ const Cards1 = (props) => {
     useEffect(() => {
         async function getAll() {
             try {
-                const admin = await axios.get("http://localhost:3001/api/admin")
+                const admin = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/admin`)
                 console.log("admin", admin.data.name);
                 setadmins(admin.data.name);
             } catch (error) {
@@ -84,7 +84,7 @@ const Cards1 = (props) => {
     useEffect(() => {
         async function getAll() {
             try {
-                const teacher = await axios.get("http://localhost:3001/api/teacher")
+                const teacher = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/teacher`)
                 console.log("teacher", teacher.data.name);
                 setteachers(teacher.data.name);
             } catch (error) {
@@ -96,7 +96,7 @@ const Cards1 = (props) => {
     useEffect(() => {
         async function getAll() {
             try {
-                const parent = await axios.get("http://localhost:3001/api/parent")
+                const parent = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/parent`)
                 console.log("parent", parent.data.name);
                 setParents(parent.data.name);
             } catch (error) {
@@ -128,7 +128,7 @@ const Cards1 = (props) => {
                         (props.role == "teachers") ? { display: "none" } : {}
                     }>
                     <div className="ctitle admin">Admins</div>
-                    <div className="num">{admins.length}</div>
+                    <div className="num">{admins?.length ?? 0}</div>
                     <Link to={`/details/${"admin"}`} className="btn">Know More</Link>
                 </div>
                 <div>
@@ -138,21 +138,21 @@ const Cards1 = (props) => {
                         }
                     >
                         <div className="ctitle">Teachers</div>
-                        <div className="num">{teachers.length}</div>
+                        <div className="num">{teachers?.length ?? 0}</div>
                         <a href={`/details/${"teacher"}`} className="btn">Know More</a>
                     </div>
                 </div>
                 <div>
                     <div className="cards students">
                         <div className="ctitle">Students</div>
-                        <div className="num">{students.length}</div>
+                        <div className="num">{students?.length ?? 0}</div>
                         <a href={`/details/${"student"}`} className="btn">Know More</a>
                     </div>
                 </div>
                 <div>
                     <div className="cards parents">
                         <div className="ctitle">Parents</div>
-                        <div className="num">{Parents.length}</div>
+                        <div className="num">{Parents?.length ?? 0}</div>
                         <a  className="btn">Know More</a>
                     </div>
                 </div>
@@ -162,7 +162,7 @@ const Cards1 = (props) => {
                 <div>
                     <div className="cards students">
                         <div className="ctitle">Students fee Balance...</div>
-                        <div className="num">{fees.length}</div>
+                        <div className="num">{fees?.length ?? 0}</div>
                         <a href={`/details/fee/${"fee"}`} className="btn">Know More</a>
                     </div>
                 </div>
